@@ -12,6 +12,11 @@ private JButton jcomp5;
 private JButton jcomp6;
 private JButton jcomp7;
 
+
+
+
+
+
 public MyPanel()    {
     //construct components
    
@@ -24,22 +29,24 @@ public MyPanel()    {
     jcomp4.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            JFrame frame = new JFrame ("Employees");
-          //  frame.setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
-          //  frame.getContentPane().add (new MyPanel());
-            frame.pack();
+           JFrame frame = new JFrame ("Employees");
+           // frame.setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
+              frame.pack();
             frame.setVisible (true);
+
+       
 
         }
     });
     jcomp5.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            JFrame frame = new JFrame ("Drugs");
+          //  JFrame frame = new JFrame ("Drugs");
            // frame.setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
           //  frame.getContentPane().add (new MyPanel());
-            frame.pack();
-            frame.setVisible (true);
+              new connection().setVisible(true);
+            //frame.pack();
+            //frame.setVisible (true);
 
         }
     });
@@ -57,11 +64,12 @@ public MyPanel()    {
     jcomp7.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            JFrame frame = new JFrame ("Patients");
+            new patients().setVisible(true);
+           // JFrame frame = new JFrame ("Patients");
             //frame.setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
           //  frame.getContentPane().add (new MyPanel());
-            frame.pack();
-            frame.setVisible (true);
+           // frame.pack();
+           // frame.setVisible (true);
 
         }
     });
