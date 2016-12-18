@@ -118,7 +118,7 @@ class connection  extends javax.swing.JFrame {
             }
         Connection con=(Connection)DriverManager.getConnection("jdbc:mysql://localhost:3306/pharmacy_system","root","root");
         Statement stmt=con.createStatement();
-        String query="select * from drug ;";
+        String query="select * from drug where Did in ( select did from contain where pid=1);";
         ResultSet rs=stmt.executeQuery(query);
    
         while(rs.next())
@@ -142,7 +142,7 @@ catch(Exception e)
 }
    
  private void updateActionPerformed(java.awt.event.ActionEvent evt){
-      new updateDrugsII().setVisible(true);
+    //  new updateDrugsII().setVisible(true);
  
  }
     /**

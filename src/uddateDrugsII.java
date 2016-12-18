@@ -21,12 +21,12 @@ import javax.swing.JFrame;
  *
  * @author Dell
  */
-class updateDrugsII  extends javax.swing.JFrame {
+class updateEmployeesII  extends javax.swing.JFrame {
 
     /**
      * Creates new form conn
      */
-    public updateDrugsII() {
+    public updateEmployeesII() {
         initComponents();
     }
 
@@ -52,7 +52,7 @@ class updateDrugsII  extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Did", "name", "price", "type"
+                "ID", "name", "Phone", "DOB","JOB","Salary"
             }
         ));
         jScrollPane2.setViewportView(p1);
@@ -134,18 +134,21 @@ class updateDrugsII  extends javax.swing.JFrame {
             }
         Connection con=(Connection)DriverManager.getConnection("jdbc:mysql://localhost:3306/pharmacy_system","root","root");
         String IDString=jTextField1.getText();
-        int drugID=Integer.parseInt(IDString);
+        int empID=Integer.parseInt(IDString);
         Statement stmt=con.createStatement();
-        String query="select * from drug where Did='"+drugID+"'" ;
+        String query="select * from employee where id_employee='"+empID+"'" ;
         ResultSet rs=stmt.executeQuery(query);
    
         while(rs.next())
         {
-            String sr=rs.getString("Did");
-            String Chemical=rs.getString("name");
-            String manu=rs.getString("price");
-            String man=rs.getString("type");
-            model.addRow(new Object[]{sr,Chemical,manu,man});
+            int sr=rs.getInt("id_employee");
+            String Chemical=rs.getString("name_employee");
+            int manu=rs.getInt("phone_no");
+            String man=rs.getString("date_of_birth");
+            String j=rs.getString("job");
+            int s = rs.getInt("salary");
+
+            model.addRow(new Object[]{sr,Chemical,manu,man,j,s});
         }
         rs.close();
         stmt.close();
@@ -161,7 +164,7 @@ catch(Exception e)
         private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         int Did =Integer.parseInt(p1.getModel().getValueAt(0, 0).toString());
-        float price =Float.parseFloat(p1.getModel().getValueAt(0, 2).toString());
+        float salary =Float.parseFloat(p1.getModel().getValueAt(0, 5).toString());
         
         try{
               try {
@@ -173,7 +176,7 @@ catch(Exception e)
         int drugID=Integer.parseInt(IDString);
                 Connection con=(Connection)DriverManager.getConnection("jdbc:mysql://localhost:3306/pharmacy_system","root","root");
                   Statement stmt=con.createStatement();
-        String test="update drug set price = '"+price+"'where Did='"+Did+"'";
+        String test="update employee set salary = '"+salary+"'where id_employee='"+Did+"'";
           stmt.executeUpdate(test);
           JOptionPane.showMessageDialog(null, "updated successfully", "SUCCESS " , JOptionPane.INFORMATION_MESSAGE);
           dispose();       

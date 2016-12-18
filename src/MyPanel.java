@@ -29,10 +29,7 @@ public MyPanel()    {
     jcomp4.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-           JFrame frame = new JFrame ("Employees");
-           // frame.setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
-              frame.pack();
-            frame.setVisible (true);
+          new employees().setVisible(true);
 
        
 
@@ -44,7 +41,7 @@ public MyPanel()    {
           //  JFrame frame = new JFrame ("Drugs");
            // frame.setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
           //  frame.getContentPane().add (new MyPanel());
-              new connection().setVisible(true);
+              new NewJFrame().setVisible(true);
             //frame.pack();
             //frame.setVisible (true);
 
@@ -125,10 +122,12 @@ public MyPanel()    {
 
 
 public static void main (String[] args) {
-    JFrame frame = new JFrame ("Home");
+   JFrame frame = new JFrame ("Home");
     frame.setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
     frame.getContentPane().add (new MyPanel());
     frame.pack();
     frame.setVisible (true);
+   
+    
 }
 }
