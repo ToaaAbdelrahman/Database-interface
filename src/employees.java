@@ -176,8 +176,9 @@ increase.addActionListener(new java.awt.event.ActionListener() {
                            ResultSet rs;
                            
                            // st=connection.createStatement();
-                           JOptionPane.showMessageDialog (null, "success", "increase", JOptionPane.INFORMATION_MESSAGE);
-                           show_users_in_Jtable();
+                           JOptionPane.showMessageDialog (null, "success!", "increase", JOptionPane.INFORMATION_MESSAGE);
+                          // show_users_in_Jtable();
+                          dispose();
 
 
     
