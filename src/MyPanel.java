@@ -50,11 +50,7 @@ public MyPanel()    {
     jcomp6.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            JFrame frame = new JFrame ("Drug companies");
-            //frame.setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
-          //  frame.getContentPane().add (new MyPanel());
-            frame.pack();
-            frame.setVisible (true);
+            new drug_companies().setVisible(true);
 
         }
     });

@@ -17,6 +17,7 @@ public class employees  extends javax.swing.JFrame{
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable p1;
     private javax.swing.JButton salary_avg;
+     private javax.swing.JButton increase;
    // private javax.swing.JLabel jLabel1;
     private void initComponents() {
            jButton1 = new javax.swing.JButton();
@@ -24,6 +25,7 @@ public class employees  extends javax.swing.JFrame{
         p1 = new javax.swing.JTable();
         jButton2 = new javax.swing.JButton();
         salary_avg=new javax.swing.JButton();
+        increase =new javax.swing.JButton();
        // jLabel1=new javax.swing.JLabel();
         jButton1.setText("jButton1");
         //setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -39,6 +41,8 @@ public class employees  extends javax.swing.JFrame{
         jScrollPane1.setViewportView(p1);
 
         jButton2.setText("Update Salary");
+                increase.setText("increase Employees salaries");
+
                salary_avg.setText("get salary average");
               // jLabel1.setText("avg_salary");
 
@@ -55,7 +59,14 @@ public class employees  extends javax.swing.JFrame{
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 getAvgActionPerformed(evt);
             }});
-
+increase.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                try {
+                    IncreaseActionPerformed(evt);
+                } catch (SQLException ex) {
+                    Logger.getLogger(employees.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }});
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -65,7 +76,8 @@ public class employees  extends javax.swing.JFrame{
                     .addGroup(layout.createSequentialGroup()
                         .addGap(90, 90, 90)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(salary_avg, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(salary_avg, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(increase, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 527, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -82,6 +94,8 @@ public class employees  extends javax.swing.JFrame{
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(64, 64, 64)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE,  javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(increase, javax.swing.GroupLayout.PREFERRED_SIZE,  javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+
                 .addGap(32, 32, 32)
                     .addComponent(salary_avg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                      //.addComponent(jLabel1)
@@ -151,13 +165,31 @@ public class employees  extends javax.swing.JFrame{
     
     
     }
+       public void IncreaseActionPerformed(java.awt.event.ActionEvent evt) throws SQLException{
+             java.sql.Connection connection=getConnection();
+                    String test1= JOptionPane.showInputDialog("Please enter the increase factor ");
+                            int  factor = Integer.parseInt(test1);
+         String query="update employee set salary =salary*'"+factor+"'";
+                           PreparedStatement pstmt = connection.prepareStatement(query);
+                         //  pstmt.setString(1, "1*salary");
+                           pstmt.executeUpdate();
+                           ResultSet rs;
+                           
+                           // st=connection.createStatement();
+                           JOptionPane.showMessageDialog (null, "success", "increase", JOptionPane.INFORMATION_MESSAGE);
+                           show_users_in_Jtable();
+
+
+    
+    
+    }
 
         public ArrayList<user> getUsersList()
     {
          ArrayList<user> usersList= new ArrayList<user>() ;
          java.sql.Connection connection=getConnection();
          // String query="select drug.Did,name,price,type from drug,contain where drug.Did=contain.did And pid=1;";
-         String query="select * from employee;";
+         String query="select * from employee where id_employee in (select id_employee from works where pid=1);";
                   Statement st;
                   ResultSet rs;
                   
