@@ -41,7 +41,7 @@ public MyPanel()    {
           //  JFrame frame = new JFrame ("Drugs");
            // frame.setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
           //  frame.getContentPane().add (new MyPanel());
-              new NewJFrame().setVisible(true);
+              new drug_frame().setVisible(true);
             //frame.pack();
             //frame.setVisible (true);
 
